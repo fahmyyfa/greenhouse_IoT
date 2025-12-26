@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kontrol Greenhouse</title>
+</head>
+<body>
+
+<h2>Kontrol Kipas & Lampu</h2>
+
+<button onclick="setControl(1,1)">ON Semua</button>
+<button onclick="setControl(0,0)">OFF Semua</button>
+
+<br><br>
+
+<button onclick="setControl(1,0)">Kipas ON</button>
+<button onclick="setControl(0,1)">Lampu ON</button>
+
+<script>
+function setControl(kipas, lampu) {
+  fetch(`api/control.php?kipas=${kipas}&lampu=${lampu}`)
+    .then(res => res.text())
+    .then(txt => alert(txt));
+}
+</script>
+
+</body>
+</html>

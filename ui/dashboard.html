@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Greenhouse Control System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div>
+    <h1>Greenhouse Control System</h1>
+    <p>Monitoring, Control & Visualization</p>
+  </div>
+  <div class="top-actions">
+    <button id="themeToggle" class="theme-btn">🌙 Dark</button>
+    <div id="deviceStatus" class="status offline">ESP32 ● OFFLINE</div>
+  </div>
+</header>
+
+<main class="container">
+
+<section class="card">
+  <h2>Monitoring Lingkungan</h2>
+
+  <div class="widgets">
+    <div class="widget temp">
+      <span>🌡 Suhu</span>
+      <strong id="val-suhu">-- °C</strong>
+      <div class="progress"><div id="bar-suhu"></div></div>
+    </div>
+
+    <div class="widget hum">
+      <span>💧 Kelembapan</span>
+      <strong id="val-hum">-- %</strong>
+      <div class="progress"><div id="bar-hum"></div></div>
+    </div>
+
+    <div class="widget rain">
+      <span>🌧 Hujan</span>
+      <strong id="val-hujan">---</strong>
+    </div>
+  </div>
+
+  <p>Update terakhir: <span id="val-time">-</span></p>
+</section>
+
+<section class="card">
+  <h2>Grafik Histori Sensor</h2>
+  <div class="chart-box">
+    <canvas id="sensorChart"></canvas>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Mode Sistem</h2>
+  <div class="btn-group">
+    <button id="mode-manual" class="btn" onclick="setMode(1)">MANUAL</button>
+    <button id="mode-auto" class="btn" onclick="setMode(0)">AUTO</button>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Kontrol Aktuator</h2>
+
+  <div class="control">
+    <span>Kipas</span>
+    <div class="btn-group">
+      <button id="kipas-on" class="btn on" onclick="kipasOn()">ON</button>
+      <button id="kipas-off" class="btn off" onclick="kipasOff()">OFF</button>
+    </div>
+  </div>
+
+  <div class="control">
+    <span>Lampu</span>
+    <div class="btn-group">
+      <button id="lampu-on" class="btn on" onclick="lampuOn()">ON</button>
+      <button id="lampu-off" class="btn off" onclick="lampuOff()">OFF</button>
+    </div>
+  </div>
+
+  <div class="slider-box">
+    <label>Servo Ventilasi</label>
+    <input id="servoSlider" type="range" min="0" max="180" oninput="setServo(this.value)">
+    <span id="servoValue">90°</span>
+  </div>
+</section>
+
+</main>
+
+<script src="control.js"></script>
+</body>
+</html>
